@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import RouterOutlet from '../router/RouterOutlet'
-
-
+import Home from './components/Home'
 class App extends Component {
   render() {
     return (
       <div id="App">
 
-            <RouterOutlet/>
+            <Home/>
 
       </div>
     );

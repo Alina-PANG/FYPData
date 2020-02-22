@@ -130,7 +130,7 @@ export default function Dashboard() {
   var [yValues, setYValues] = React.useState('');
   const costValues = [0.01,0.25,0.5];
   const matrixValues = [3,6,9,12,15];
-  const componentValues = [[2,2],[3,3],[4,4],[5,5],[2,5]];
+  const componentValues = [2,3,4,5,'random 2-5'];
   const innovationValues = [0.5,0.75,1];
 
   // const handleSubmit = event => {

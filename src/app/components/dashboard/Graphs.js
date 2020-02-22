@@ -21,10 +21,7 @@ const classes = {
     overflow: 'hidden',
     // backgroundColor: theme.palette.background.paper,
   },
-  gridList: {
-    width: 500,
-    height: 450,
-  },
+
   paper: {
     // padding: theme.spacing(2),
     padding: '30px',
@@ -40,6 +37,13 @@ const classes = {
       fontSize: '1rem',
       paddingLeft:'16px',
       paddingTop: '16px'
+  },
+  images: {
+    maxWidth: '100%',
+    maxHeight: '100%',
+    display: 'block',
+    width: 'auto',
+    height: 'auto'
   }
 }
 
@@ -60,18 +64,26 @@ class Graphs extends React.Component {
         const xLabel = returndata[3];
         const yLabel = returndata[4];
         const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+        // const tryRequire = (path) => {
+        //     try {
+        //      return require(path);
+        //     } catch (err) {
+        //      return "./";
+        //     }
+        //   };
         console.log(graphs)
+        console.log(xValues.length)
         // component={componentsize} cost={cost} innovation={innovation} matrix={matrix}
         //   xAxisLabel={xAxisLabel} yAxisLabel={yAxisLabel} graphType={graphType} 
         return (
         <Grid container spacing={3}>
             <Grid item xs={12}>
-                <Paper className={classes.paper}>
+                <Paper >
                     <List component="nav" aria-label="secondary mailbox folders">
                             <span style={classes.listItemText}>{xLabel}</span>       
                             <span style={classes.listItemText}></span>       
                             {xValues === "" ? null : xValues.map(x => (
-                                xLabel === 'component'? ( <span style={classes.listItemText}>{x[0]}, {x[1]}</span>)
+                                xLabel === 'component'? ( <span style={classes.listItemText}>{x}</span>)
                                     : (<span style={classes.listItemText}>{x}</span>)
                             ))}
                     </List>
@@ -89,7 +101,7 @@ class Graphs extends React.Component {
                          {yValues === "" ? null : yValues.map(x => (
                              yLabel === 'component'? (
                                 <ListItem >
-                                <ListItemText primary={x[0]+","+x[1]} />
+                                <ListItemText primary={x} />
                                 </ListItem>
                              ):(
                             <ListItem >
@@ -102,10 +114,10 @@ class Graphs extends React.Component {
             <Grid item xs={12} md={10} lg={10}>
                 <Paper className={fixedHeightPaper}>
                     {graphs.length === 0? "Oops there is no result":(
-                        <GridList cellHeight={160} className={classes.gridList} cols={this.props.xValues.length}> 
+                        <GridList cellHeight={200} cols={xValues.length}> 
                             {graphs.map(g => (
-                                <GridListTile key={g} cols={xValues.length}>
-                                <img src={"./images/"+g+this.props.graphType+".png"} alt={g} />
+                                <GridListTile key={g} cols={1}>
+                                    <img style={classes.images} src={require("../../../images/"+g+this.props.graphType+".png")} alt={g} />
                                 </GridListTile>)
                                 )
                             } 
@@ -113,7 +125,6 @@ class Graphs extends React.Component {
                     )}
                 </Paper>
             </Grid>
-            
         </Grid>
     );}
 }

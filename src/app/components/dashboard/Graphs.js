@@ -13,6 +13,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import data from '../data';
 
+
 const classes = {
   root: {
     display: 'flex',
@@ -33,29 +34,56 @@ const classes = {
     height: 240,
   },
   listItemText: {
-      paddingRight: '10%',
+      paddingRight: '5%',
       fontSize: '1rem',
-      paddingLeft:'16px',
+      paddingLeft: '10%',
       paddingTop: '16px'
   },
+  listItemTextTitle: {
+    paddingRight: '8%',
+    fontSize: '1rem',
+    paddingLeft:'16px',
+    paddingTop: '16px'
+},
   images: {
     maxWidth: '100%',
     maxHeight: '100%',
     display: 'block',
     width: 'auto',
     height: 'auto'
-  }
+  },
+  placeholder: {
+    maxWidth: '100%',
+    maxHeight: '100%',
+    display: 'block',
+    width: 'auto',
+    height: 'auto',
+    left:'20px'
+  },
 }
 
 class Graphs extends React.Component {
-    // componentDidMount() {
-    //     var req = require.context('../../../../public/static/img', true, /.*\.png$/);
-    //     req.keys().forEach(function(key){
-    //         req(key);
-    //         });
-    //  }
+    constructor(props) {
+        super(props);
+        this.state = {
+          showModal: false,
+          selected:null
+        };
+      }
+    
+    setModalState(showModal,selected) {
+        console.log('triggered')
+        this.setState({
+            showModal: showModal,
+            selected:selected
+        });
+    }
 
     render() {
+        // const marginLeft = ['-3%','-22%','-45%']
+        // const marginTop = ['-22%','-41%','-62%']
+        const cellCol = [0,400,300,250,200,170]
+        const listItemHeight = [0,400,250,200,138,138]
         var returndata = data(this.props.xAxisLabel,this.props.yAxisLabel,this.props.xValues,this.props.yValues,
             this.props.matrix, this.props.cost, this.props.component,this.props.innovation);
         const graphs = returndata[0];
@@ -64,24 +92,23 @@ class Graphs extends React.Component {
         const xLabel = returndata[3];
         const yLabel = returndata[4];
         const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-        // const tryRequire = (path) => {
-        //     try {
-        //      return require(path);
-        //     } catch (err) {
-        //      return "./";
-        //     }
-        //   };
+        const tryRequire = (path) => {
+            try {
+             require(path);
+             console.log(path)
+             return true;
+            } catch (err) {
+                console.log("false")
+             return false;
+            }
+          };
         console.log(graphs)
-        console.log(xValues.length)
-        // component={componentsize} cost={cost} innovation={innovation} matrix={matrix}
-        //   xAxisLabel={xAxisLabel} yAxisLabel={yAxisLabel} graphType={graphType} 
         return (
         <Grid container spacing={3}>
             <Grid item xs={12}>
                 <Paper >
                     <List component="nav" aria-label="secondary mailbox folders">
-                            <span style={classes.listItemText}>{xLabel}</span>       
-                            <span style={classes.listItemText}></span>       
+                            <span style={classes.listItemTextTitle}>{xLabel}</span>       
                             {xValues === "" ? null : xValues.map(x => (
                                 xLabel === 'component'? ( <span style={classes.listItemText}>{x}</span>)
                                     : (<span style={classes.listItemText}>{x}</span>)
@@ -89,7 +116,7 @@ class Graphs extends React.Component {
                     </List>
                 </Paper>
             </Grid>
-            <Grid item xs={12} md={2} lg={2}>
+            <Grid item xs={12} md={1} lg={1}>
                 <Paper className={fixedHeightPaper}>
                     <List component="nav" aria-label="secondary mailbox folders">
                         <ListItem >
@@ -100,26 +127,47 @@ class Graphs extends React.Component {
                     <List component="nav" aria-label="secondary mailbox folders">
                          {yValues === "" ? null : yValues.map(x => (
                              yLabel === 'component'? (
-                                <ListItem >
-                                <ListItemText primary={x} />
+                                <ListItem>
+                                   <div style={{
+                                        fontSize: '1rem',
+                                        marginBottom: listItemHeight[xValues.length ]+'px'}
+                                   }>{x}</div>
                                 </ListItem>
                              ):(
                             <ListItem >
-                                <ListItemText primary={x} />
+                                 <div style={{
+                                        fontSize: '1rem',
+                                        marginBottom: listItemHeight[xValues.length ]+'px'}}>{x}</div>
                             </ListItem>)
                         ))}
                     </List>
                 </Paper>
             </Grid>
-            <Grid item xs={12} md={10} lg={10}>
+            <Grid item xs={12} md={11} lg={11}>
                 <Paper className={fixedHeightPaper}>
                     {graphs.length === 0? "Oops there is no result":(
-                        <GridList cellHeight={200} cols={xValues.length}> 
+                        <GridList cellHeight={cellCol[xValues.length]} cols={xValues.length}> 
                             {graphs.map(g => (
                                 <GridListTile key={g} cols={1}>
-                                    <img style={classes.images} src={require("../../../images/"+g+this.props.graphType+".png")} alt={g} />
-                                </GridListTile>)
+                                    {tryRequire("../../../images/"+g+this.props.graphType+".png")?(<img style={classes.images} src={require("../../../images/"+g+this.props.graphType+".png")} alt={g} />):
+                                    ( <img style={classes.placeholder} src={require("../../../images/placeholder.png")} alt={g} />)
+                                    }
+                                    {/* onClick={ this.setModalState.bind(this, true, g)  */}
+                                    {/* <div style={{
+                                    display: (this.state.showModal && this.state.selected === g) ? 'block' : 'none' 
+                                }}>
+                                    <img style={{
+                                        display: 'block',
+                                        zIndex: '10000',
+                                        position: 'fixed',
+                                        marginTop: '-22%',
+                                        marginLeft: '-3%'}
+                                    } src={require("../../../images/6_12/performance.png")} onClick={ this.setModalState.bind(this, false, null) } alt={"modal-"+g}  />
+                                </div> */}
+                                </GridListTile>
+                                    )
                                 )
+                                // require("../../../images/"+g+this.props.graphType+".png")
                             } 
                         </GridList>  
                     )}

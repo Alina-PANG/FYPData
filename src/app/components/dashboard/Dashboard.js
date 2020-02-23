@@ -304,7 +304,11 @@ export default function Dashboard() {
                 > 
                   <MenuItem value={"performance"}>Performance</MenuItem>
                   <MenuItem value={"rank"}>Rank</MenuItem>
-                  <MenuItem value={"count"}>Count</MenuItem>
+                  <MenuItem value={"Add"}>Add</MenuItem>
+                  <MenuItem value={"Drop"}>Add</MenuItem>
+                  <MenuItem value={"Exp"}>Add</MenuItem>
+                  <MenuItem value={"Borrow"}>Add</MenuItem>
+                  <MenuItem value={"Switch"}>Add</MenuItem>
                   <MenuItem value={"sizeHeatMap"}>Size Heat Map</MenuItem>
                   <MenuItem value={"borrowedVSranking"}>Borrowed vs Ranking</MenuItem>
                   <MenuItem value={"firmSizeOccurence"}>Firm Size Occurence</MenuItem>

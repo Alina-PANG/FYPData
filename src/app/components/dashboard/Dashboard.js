@@ -334,10 +334,10 @@ export default function Dashboard() {
                   <MenuItem value={"sizeHeatMap"}>Size Heat Map</MenuItem>
                   <MenuItem value={"borrowedVSranking"}>Borrowed vs Ranking</MenuItem>
                   <MenuItem value={"firmSizeOccurence"}>Firm Size Occurence</MenuItem>
-                  <MenuItem value={"sizeVSefficiency"}>Size vs Efficiency</MenuItem>
+                  {/* <MenuItem value={"sizeVSefficiency"}>Size vs Efficiency</MenuItem> */}
                   <MenuItem value={"sizeVSfitness"}>Size vs Fitness</MenuItem>
-                  <MenuItem value={"sizeVSranking"}>Size vs Ranking</MenuItem>
-                  <MenuItem value={"totalVSranking"}>Total Size vs Ranking</MenuItem>
+                  <MenuItem value={"sizeVSrank"}>Size vs Ranking</MenuItem>
+                  {/* <MenuItem value={"totalVSranking"}>Total Size vs Ranking</MenuItem> */}
                 </Select>
               </FormControl>
               <Button variant="contained" color="primary" onClick={handleSubmit}>

@@ -332,12 +332,13 @@ export default function Dashboard() {
                   <MenuItem value={"Borrow"}>Borrow</MenuItem>
                   <MenuItem value={"Switch"}>Switch</MenuItem>
                   <MenuItem value={"sizeHeatMap"}>Size Heat Map</MenuItem>
-                  <MenuItem value={"borrowedVSranking"}>Borrowed vs Ranking</MenuItem>
+                  <MenuItem value={"3dSizeScatter"}>3D Scatter</MenuItem>
                   <MenuItem value={"firmSizeOccurence"}>Firm Size Occurence</MenuItem>
                   <MenuItem value={"sizeVSefficiency"}>Size vs Efficiency</MenuItem>
-                  <MenuItem value={"sizeVSfitness"}>Size vs Fitness</MenuItem>
-                  <MenuItem value={"sizeVSranking"}>Size vs Ranking</MenuItem>
-                  <MenuItem value={"totalVSranking"}>Total Size vs Ranking</MenuItem>
+                  <MenuItem value={"sizeVSfitness"}>Total Size vs Fitness</MenuItem>
+                  <MenuItem value={"sizeVSranking"}>Total Size vs Ranking</MenuItem>
+                  <MenuItem value={"borrowedVSfitness"}>Own Size vs Fitness</MenuItem>
+                  <MenuItem value={"borrowedVSranking"}>Own Size vs Ranking</MenuItem>
                 </Select>
               </FormControl>
               <Button variant="contained" color="primary" onClick={handleSubmit}>

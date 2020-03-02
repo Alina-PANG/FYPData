@@ -157,7 +157,7 @@ class Graphs extends React.Component {
                                    }>{x}</div>
                                 </ListItem>
                              ):(
-                            <ListItem key="placeholder">
+                            <ListItem key="placeholderli">
                                  <div style={{
                                         fontSize: '1rem',
                                         marginBottom: listItemHeight[xValues.length ]+'px'}}>{x}</div>

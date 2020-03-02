@@ -13,7 +13,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import data from '../data';
 
-
 const classes = {
   root: {
     display: 'flex',
@@ -52,6 +51,8 @@ const classes = {
     width: 'auto',
     height: 'auto'
   },
+  divModal:{},
+  imgModal:{},
   placeholder: {
     maxWidth: '100%',
     maxHeight: '100%',
@@ -66,18 +67,35 @@ class Graphs extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          showModal: false,
-          selected:null
+          open: false,
+          modalImg:""
         };
       }
-    
-    setModalState(showModal,selected) {
-        console.log('triggered')
+    onDivClick = () => {
         this.setState({
-            showModal: showModal,
-            selected:selected
+            open: false
         });
     }
+    onImgClick = (path) => {
+        if(this.state.open){
+            this.setState({
+                open: false
+            });
+        }
+        else {
+            this.setState({
+                open: true,
+                modalImg:path
+            });
+        }
+    }
+    componentDidMount() {
+        var req = require.context('../../../images/', true, /.*\.png$/);
+        req.keys().forEach(function(key){
+            req(key);
+            // console.log(key)
+            });
+     }
 
     render() {
         // const marginLeft = ['-3%','-22%','-45%']
@@ -92,26 +110,31 @@ class Graphs extends React.Component {
         const xLabel = returndata[3];
         const yLabel = returndata[4];
         const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-        const tryRequire = (path) => {
-            try {
-             require(path);
-             console.log(path)
-             return true;
-            } catch (err) {
-                console.log("false")
-             return false;
-            }
-          };
-        console.log(graphs)
+       
+        // const tryRequire = (path) => {
+        //     try {
+        //      require(path);
+        //      console.log(path)
+        //      return true;
+        //     } catch (err) {
+        //         console.log("false")
+        //         console.log(err)
+        //      return false;
+        //     }
+        //   };
+        for(var i = 0; i < graphs.length; i ++){
+            console.log("../../../images/"+graphs[i]+this.props.graphType+".png")
+        }
+
         return (
-        <Grid container spacing={3}>
+        <Grid container spacing={3} >
             <Grid item xs={12}>
                 <Paper >
                     <List component="nav" aria-label="secondary mailbox folders">
-                            <span style={classes.listItemTextTitle}>{xLabel}</span>       
+                            <span style={classes.listItemTextTitle} key={"xlabel"}>{xLabel}</span>       
                             {xValues === "" ? null : xValues.map(x => (
-                                xLabel === 'component'? ( <span style={classes.listItemText}>{x}</span>)
-                                    : (<span style={classes.listItemText}>{x}</span>)
+                                xLabel === 'component'? ( <span key={x} style={classes.listItemText}>{x}</span>)
+                                    : (<span style={classes.listItemText} key={x}>{x}</span>)
                             ))}
                     </List>
                 </Paper>
@@ -119,7 +142,7 @@ class Graphs extends React.Component {
             <Grid item xs={12} md={1} lg={1}>
                 <Paper className={fixedHeightPaper}>
                     <List component="nav" aria-label="secondary mailbox folders">
-                        <ListItem >
+                        <ListItem key="ylabel">
                             <ListItemText primary={ yLabel} />
                         </ListItem>
                     </List>
@@ -127,31 +150,47 @@ class Graphs extends React.Component {
                     <List component="nav" aria-label="secondary mailbox folders">
                          {yValues === "" ? null : yValues.map(x => (
                              yLabel === 'component'? (
-                                <ListItem>
+                                <ListItem key={x}>
                                    <div style={{
                                         fontSize: '1rem',
                                         marginBottom: listItemHeight[xValues.length ]+'px'}
                                    }>{x}</div>
                                 </ListItem>
                              ):(
-                            <ListItem >
+                            <ListItem key="placeholder">
                                  <div style={{
                                         fontSize: '1rem',
                                         marginBottom: listItemHeight[xValues.length ]+'px'}}>{x}</div>
                             </ListItem>)
                         ))}
                     </List>
+
                 </Paper>
             </Grid>
             <Grid item xs={12} md={11} lg={11}>
                 <Paper className={fixedHeightPaper}>
+                    {/* {
+                        this.state.open?(
+                        <div onClick={this.onDivClick}>
+                            <div style={classes.divModal} >
+                                <img style={classes.imgModal} src={require(this.state.modalImg)} alt="modalImage" />
+                            </div>
+                        </div>
+                        ):null
+                    }
+                    */}
                     {graphs.length === 0? "Oops there is no result":(
                         <GridList cellHeight={cellCol[xValues.length]} cols={xValues.length}> 
                             {graphs.map(g => (
                                 <GridListTile key={g} cols={1}>
-                                    {tryRequire("../../../images/"+g+this.props.graphType+".png")?(<img style={classes.images} src={require("../../../images/"+g+this.props.graphType+".png")} alt={g} />):
-                                    ( <img style={classes.placeholder} src={require("../../../images/placeholder.png")} alt={g} />)
-                                    }
+                                    
+                                        {/* {tryRequire("../../../images/"+g+this.props.graphType+".png")?(<img style={classes.images} src={require("../../../images/"+g+this.props.graphType+".png")} alt={g} />):
+                                        ( <img style={classes.placeholder} src={require("../../../images/placeholder.png")} alt={g} />)
+                                        } */}
+                                    <img onClick={() => this.onImgClick("../../../images/"+g+this.props.graphType+".png")} style={classes.images} src={require("../../../images/"+g+this.props.graphType+".png")} alt={g} />
+                                    
+                                    {/* <img style={classes.images} src={"../../../images/"+g+this.props.graphType+".png"} alt={g} /> */}
+                                    
                                     {/* onClick={ this.setModalState.bind(this, true, g)  */}
                                     {/* <div style={{
                                     display: (this.state.showModal && this.state.selected === g) ? 'block' : 'none' 

@@ -8,7 +8,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
-// import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Container from '@material-ui/core/Container';
@@ -128,6 +128,27 @@ export default function Dashboard() {
   var [yAxisLabel, setYAxisLabel] = React.useState('');
   var [xValues, setXValues] = React.useState('');
   var [yValues, setYValues] = React.useState('');
+  var [componentsizeGraph, setcsg] = React.useState('');
+  var [costGraph, setcg] = React.useState('');
+  var [innovationGraph, setig] = React.useState('');
+  var [matrixGraph, setmg] = React.useState('');
+  var [xAxisLabelGraph, setxlg] = React.useState('');
+  var [yAxisLabelGraph, setylg] = React.useState('');
+  var [graphTypeGraph, setgtg] = React.useState('');
+  var [xValuesGraph, setxvg] = React.useState('');
+  var [yValuesGraph, setyvg] = React.useState('');
+  const handleSubmit = () => {
+    setcsg(componentsize);
+    setcg(cost);
+    setig(innovation);
+    setmg(matrix);
+    setxlg(xAxisLabel);
+    setylg(yAxisLabel);
+    setgtg(graphType);
+    setxvg(xValues);
+    setyvg(yValues);
+  } 
+
   const costValues = [0.01,0.25,0.5];
   const matrixValues = [3,6,9,12,15];
   const componentValues = [2,3,4,5,'random 2-5'];
@@ -189,6 +210,7 @@ export default function Dashboard() {
   const handleGraphTypeChange = event => {
     setGraphType(event.target.value);
   };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -305,10 +327,10 @@ export default function Dashboard() {
                   <MenuItem value={"performance"}>Performance</MenuItem>
                   <MenuItem value={"rank"}>Rank</MenuItem>
                   <MenuItem value={"Add"}>Add</MenuItem>
-                  <MenuItem value={"Drop"}>Add</MenuItem>
-                  <MenuItem value={"Exp"}>Add</MenuItem>
-                  <MenuItem value={"Borrow"}>Add</MenuItem>
-                  <MenuItem value={"Switch"}>Add</MenuItem>
+                  <MenuItem value={"Drop"}>Drop</MenuItem>
+                  <MenuItem value={"Exp"}>Search</MenuItem>
+                  <MenuItem value={"Borrow"}>Borrow</MenuItem>
+                  <MenuItem value={"Switch"}>Switch</MenuItem>
                   <MenuItem value={"sizeHeatMap"}>Size Heat Map</MenuItem>
                   <MenuItem value={"borrowedVSranking"}>Borrowed vs Ranking</MenuItem>
                   <MenuItem value={"firmSizeOccurence"}>Firm Size Occurence</MenuItem>
@@ -318,13 +340,13 @@ export default function Dashboard() {
                   <MenuItem value={"totalVSranking"}>Total Size vs Ranking</MenuItem>
                 </Select>
               </FormControl>
-              {/* <Button variant="contained" color="primary" onClick={handleSubmit}>
+              <Button variant="contained" color="primary" onClick={handleSubmit}>
                 Submit
-              </Button> */}
+              </Button>
             </Grid>
           </Grid>
-          <Graphs component={componentsize} cost={cost} innovation={innovation} matrix={matrix}
-          xAxisLabel={xAxisLabel} yAxisLabel={yAxisLabel} graphType={graphType} xValues={xValues} yValues={yValues}/>
+          <Graphs component={componentsizeGraph} cost={costGraph} innovation={innovationGraph} matrix={matrixGraph}
+          xAxisLabel={xAxisLabelGraph} yAxisLabel={yAxisLabelGraph} graphType={graphTypeGraph} xValues={xValuesGraph} yValues={yValuesGraph}/>
           <Box pt={4}>
             <Copyright />
           </Box>

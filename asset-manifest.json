@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.js": "/FYPData/static/js/main.7e521a6c.chunk.js",
+    "main.js.map": "/FYPData/static/js/main.7e521a6c.chunk.js.map",
+    "runtime-main.js": "/FYPData/static/js/runtime-main.5a22ac46.js",
+    "runtime-main.js.map": "/FYPData/static/js/runtime-main.5a22ac46.js.map",
+    "static/js/2.35f1fffb.chunk.js": "/FYPData/static/js/2.35f1fffb.chunk.js",
+    "static/js/2.35f1fffb.chunk.js.map": "/FYPData/static/js/2.35f1fffb.chunk.js.map",
+    "index.html": "/FYPData/index.html",
+    "precache-manifest.313cd7fc347ed27197c5743abf9e0433.js": "/FYPData/precache-manifest.313cd7fc347ed27197c5743abf9e0433.js",
+    "service-worker.js": "/FYPData/service-worker.js",
+    "static/js/2.35f1fffb.chunk.js.LICENSE.txt": "/FYPData/static/js/2.35f1fffb.chunk.js.LICENSE.txt",
+    "static/media/3dSizeScatter.png": "/FYPData/static/media/3dSizeScatter.fff64a70.png",
+    "static/media/Add.png": "/FYPData/static/media/Add.f9b23e25.png",
+    "static/media/Borrow.png": "/FYPData/static/media/Borrow.fe33eaeb.png",
+    "static/media/Drop.png": "/FYPData/static/media/Drop.fef867f2.png",
+    "static/media/Exp.png": "/FYPData/static/media/Exp.ff423761.png",
+    "static/media/Switch.png": "/FYPData/static/media/Switch.ff0e3bff.png",
+    "static/media/borrowedVSfitness.png": "/FYPData/static/media/borrowedVSfitness.ffa7977c.png",
+    "static/media/borrowedVSrank.png": "/FYPData/static/media/borrowedVSrank.ffa8300d.png",
+    "static/media/firmSizeOccurence.png": "/FYPData/static/media/firmSizeOccurence.ffc979a0.png",
+    "static/media/performance.png": "/FYPData/static/media/performance.ff52cb29.png",
+    "static/media/polyborrowedVSfitness.png": "/FYPData/static/media/polyborrowedVSfitness.fed4e4a6.png",
+    "static/media/polyborrowedVSrank.png": "/FYPData/static/media/polyborrowedVSrank.fff1f573.png",
+    "static/media/polytotalsizeVSfitness.png": "/FYPData/static/media/polytotalsizeVSfitness.fe122cf0.png",
+    "static/media/polytotalsizeVSrank.png": "/FYPData/static/media/polytotalsizeVSrank.ff68bbf4.png",
+    "static/media/rank.png": "/FYPData/static/media/rank.fd92b574.png",
+    "static/media/sizeHeatMap.png": "/FYPData/static/media/sizeHeatMap.fea0dd91.png",
+    "static/media/sizeVSfitness.png": "/FYPData/static/media/sizeVSfitness.fe1fad06.png",
+    "static/media/sizeVSrank.png": "/FYPData/static/media/sizeVSrank.ffa2ed27.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5a22ac46.js",
+    "static/js/2.35f1fffb.chunk.js",
+    "static/js/main.7e521a6c.chunk.js"
+  ]
+}
